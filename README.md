@@ -15,6 +15,13 @@ Source Chain Testnet Set up
    curl -s  https://raw.githubusercontent.com/SourceNexxus/testnet-genesis/genesis.json > ~/.source/config/genesis.json
 ```
 
+**Genesis sha256**
+
+```bash
+sha256sum ~/.source/config/genesis.json
+# 2bf556b50a2094f252e0aac75c8018a9d6c0a77ba64ce39811945087f6a5165d
+```
+
 ### Seed nodes
 
 
