@@ -3,6 +3,13 @@
 
 Source Chain Testnet Set up
 
+
+### Install Ignite CLI/Starport
+
+```bash
+   https://docs.ignite.com/guide/install.html
+```
+
 ### Clone Source Chain Repo
 
 ```bash
