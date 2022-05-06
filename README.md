@@ -16,6 +16,13 @@ Source Chain Testnet Set up
    git clone -b testnet https://github.com/Source-Protocol-Cosmos/source.git
 ```
 
+### Compile sourced Binary
+
+```bash
+cd ~/source
+ignite chain build
+```
+
 ### Download Genesis File
 
 ```bash
@@ -29,7 +36,7 @@ sha256sum ~/.source/config/genesis.json
 # 2bf556b50a2094f252e0aac75c8018a9d6c0a77ba64ce39811945087f6a5165d
 ```
 
-### Seed nodes
+### Seed nodes to add to config.toml
 
 
 ```bash
@@ -47,32 +54,26 @@ Below are the instructions to generate & submit your genesis transaction
 
 
 ### Generate genesis transaction (gentx)
-1. Complile sourced binary
 
-```bash
-cd ~/source
-ignite chain build
-```
-
-2. Initialize the Source directories and create the local genesis file with the correct chain-id:
+1. Initialize the Source directories and create the local genesis file with the correct chain-id:
 
 ```bash
 sourced init <moniker-name> --chain-id=sourcechain-testnet
 ```
 
-3. Create a local key pair (skip this step if you already have a key):
+2. Create a local key pair (skip this step if you already have a key):
 
 ```sh
 > sourced keys add <key-name>
 ```
 
-4. Add your account to your local genesis file with a given amount and the key you just created. Use only `10000000000usource`, other amounts will be ignored.
+3. Add your account to your local genesis file with a given amount and the key you just created. Use only `10000000000usource`, other amounts will be ignored.
 
 ```bash
 sourced add-genesis-account $(sourced keys show <key-name> -a) 10000000000usource
 ```
 
-5. Create the gentx, use only `9000000000usource`:
+4. Create the gentx, use only `9000000000usource`:
 
 ```bash
 sourced gentx <key-name> 9000000000usource --chain-id=sourcechain-testnet
@@ -84,11 +85,26 @@ If all goes well, you will see a message similar to the following:
 Genesis transaction written to "/home/user/.source/config/gentx/gentx-******.json"
 ```
 
-6. Change minimum gas prices in `app.toml` to `0.025usource`.
+5. Change minimum gas prices in `app.toml` to `0.025usource`.
 
-7. Start the chain
+6. Start the chain
 ```bash
 sourced start
+```
+6. Create Validator
+```bash
+sourced tx staking create-validator \
+--amount 1000000000usource \
+--commission-max-change-rate "0.1" \
+--commission-max-rate "0.20" \
+--commission-rate "0.1" \
+--min-self-delegation "1" \
+--details "validators write bios too" \
+--pubkey=$(sourced tendermint show-validator) \
+--moniker “<key-name>” \
+--chain-id sourcechain-testnet \
+--gas-prices 0.025usource \
+--from <key-name>
 ```
 
 
