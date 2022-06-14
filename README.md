@@ -1,13 +1,50 @@
 # testnet-genesis
 
 
-Source Chain Testnet Set up
+### Source Chain Testnet Set up
+
+### Minimum hardware requirements
+4GB RAM
+250GB of disk space
+1.4 GHz amd64 CPU
+
+#### Install Go
+
+**Prerequisites:** Make sure to have [Golang >=1.17](https://golang.org/).
+```bash
+wget https://golang.org/dl/go1.17.2.linux-amd64.tar.gz
+```
+```bash
+sudo tar -xvf go1.17.2.linux-amd64.tar.gz -C /usr/local
+```
+```bash
+sudo chown -R <YOUR_USERNAME>:<YOUR_USERNAME> /usr/local/go
+```
+
+You need to ensure your gopath configuration is correct. If the following **'make'** step does not work then you might have to add these lines to your .profile or .zshrc in the users home folder:
+
+```sh
+nano ~/.profile
+```
+
+```
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin:/usr/local/go/bin
+```
+
+Source update .profile
+
+```sh
+source .profile
+```
 
 
 ### Install Ignite CLI/Starport
 
+[IGNITE CLI Install Docs](https://docs.ignite.com/guide/install.html)
+
 ```bash
-   https://docs.ignite.com/guide/install.html
+   sudo curl https://get.ignite.com/cli! | sudo bash
 ```
 
 ### Clone Source Chain Repo
@@ -144,10 +181,9 @@ sourced tx staking create-validator \
 - Only PRs from individuals / groups with a history successfully running nodes will be accepted. This is to ensure the network successfully starts on time.
 
 
-###Running in production
-Note, we'll be going through some upgrades soon after Source mainnet. Consider using Cosmovisor to make your life easier.
+### Running in production
 
-Download Genesis file when the time is right. Put it in your /home/<YOUR-USERNAME>/.source folder.
+Consider using Cosmovisor for mainnet.
 
 Create a systemd file for your Source service:
 ```bash
