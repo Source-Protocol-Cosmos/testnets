@@ -33,7 +33,7 @@ sourced init <moniker-name> --chain-id=sourcechain-testnet
 ### Create a local key pair (or add existing key):
 
 ```sh
-> sourced keys add <key-name>
+sourced keys add <key-name>
 ```
 
 ### Download Genesis File
