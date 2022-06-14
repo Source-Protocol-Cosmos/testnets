@@ -142,3 +142,46 @@ sourced tx staking create-validator \
 - Commit and push to your repo
 - Create a PR onto https://github.com/SourceNexxus/testnet-genesis
 - Only PRs from individuals / groups with a history successfully running nodes will be accepted. This is to ensure the network successfully starts on time.
+
+
+###Running in production
+Note, we'll be going through some upgrades soon after Source mainnet. Consider using Cosmovisor to make your life easier.
+
+Download Genesis file when the time is right. Put it in your /home/<YOUR-USERNAME>/.source folder.
+
+Create a systemd file for your Source service:
+```bash
+sudo nano /etc/systemd/system/sourced.service
+```   
+Copy and paste the following and update <YOUR-USERNAME>:
+```bash
+Description=Source daemon
+After=network-online.target
+
+[Service]
+User=<YOUR_USERNAME>
+ExecStart=/home/<YOUR-USERNAME>/go/bin/sourced start --home /home/<YOUR-USERNAME>/.source
+Restart=on-failure
+RestartSec=3
+LimitNOFILE=4096
+
+[Install]
+WantedBy=multi-user.target
+```
+This assumes $HOME/.source to be your directory for config and data. Your actual directory locations may vary.
+
+Enable and start the new service:
+```bash
+sudo systemctl enable sourced
+```
+```bash   
+sudo systemctl start sourced
+```   
+Check status:
+```bash
+sourced status
+```
+Check logs:
+```bash
+journalctl -u sourced -f
+```   
