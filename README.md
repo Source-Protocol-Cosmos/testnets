@@ -26,7 +26,7 @@ ignite chain build
 ### Download Genesis File
 
 ```bash
-   curl -s  https://raw.githubusercontent.com/SourceNexxus/testnet-genesis/genesis.json > ~/.source/config/genesis.json
+   curl -s  https://raw.githubusercontent.com/SourceNexxus/testnet-genesis/master/genesis.json > ~/.source/config/genesis.json
 ```
 
 **Genesis sha256**
