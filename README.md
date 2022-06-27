@@ -76,7 +76,7 @@ sourced keys add <key-name>
 ### Download Genesis File
 
 ```bash
-   curl -s  https://raw.githubusercontent.com/SourceNexxus/testnet-genesis/master/genesis.json > ~/.source/config/genesis.json
+   curl -s  https://raw.githubusercontent.com/Source-Protocol-Cosmos/testnets/master/sourcechain-testnet/genesis.json > ~/.source/config/genesis.json
 ```
 
 **Genesis sha256**
@@ -161,23 +161,23 @@ sourced tx staking create-validator \
 
 ### Submit genesis transaction
 
-- Fork [the testnets repo](https://github.com/SourceNexxus/testnet-genesis) into your Github account
+- Fork [the testnets repo](https://github.com/Source-Protocol-Cosmos/testnets) into your Github account
 
 - Clone your repo using
 
   ```bash
-  git clone https://github.com/<your-github-username>/testnet-genesis
+  git clone https://github.com/<your-github-username>/testnets
   ```
 
-- Copy the generated gentx json file to `<repo_path>/testnet-genesis/gentx/`
+- Copy the generated gentx json file to `<repo_path>/testnets/gentx/`
 
   ```sh
   > cd testnet-genesis
-  > cp ~/.source/config/gentx/gentx*.json ./testnet-genesis/gentx/
+  > cp ~/.source/config/gentx/gentx*.json ./sourcechain-testnet/gentx/
   ```
 
 - Commit and push to your repo
-- Create a PR onto https://github.com/SourceNexxus/testnet-genesis
+- Create a PR onto https://github.com/Source-Protocol-Cosmos/testnets
 - Only PRs from individuals / groups with a history successfully running nodes will be accepted. This is to ensure the network successfully starts on time.
 
 
