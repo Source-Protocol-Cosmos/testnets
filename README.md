@@ -99,6 +99,17 @@ nano ~/.source/config/config.toml
 "6ca675f9d949d5c9afc8849adf7b39bc7fccf74f@164.92.98.17:26656"
 ```
 
+### Set Minimum Gas Price
+
+
+```bash
+nano ~/.source/config/app.toml
+```
+
+```
+0.025usource
+```
+
 ## Setup validator node
 
 Below are the instructions to generate & submit your genesis transaction
@@ -136,9 +147,7 @@ If all goes well, you will see a message similar to the following:
 Genesis transaction written to "/home/user/.source/config/gentx/gentx-******.json"
 ```
 
-5. Change minimum gas prices in `app.toml` to `0.025usource`.
-
-6. Start the chain
+5. Start the chain
 ```bash
 sourced start
 ```
@@ -184,7 +193,7 @@ sourced tx staking create-validator \
 
 ### Running in production
 
-Consider using Cosmovisor for mainnet.
+**Note, we'll be going through some upgrades for this testnet. Consider using [Cosmovisor](https://github.com/cosmos/cosmos-sdk/tree/master/cosmovisor) to make your life easier.**
 
 Create a systemd file for your Source service:
 ```bash
