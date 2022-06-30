@@ -45,13 +45,13 @@ source .profile
 [IGNITE CLI Install Docs](https://docs.ignite.com/guide/install.html)
 
 ```bash
-   sudo curl https://get.ignite.com/cli! | sudo bash
+sudo curl https://get.ignite.com/cli! | sudo bash
 ```
 
 ### Clone Source Chain Repo
 
 ```bash
-   git clone -b testnet https://github.com/Source-Protocol-Cosmos/source.git
+git clone -b testnet https://github.com/Source-Protocol-Cosmos/source.git
 ```
 
 ### Compile sourced Binary
@@ -77,7 +77,7 @@ sourced keys add <key-name>
 ### Download Genesis File
 
 ```bash
-   curl -s  https://raw.githubusercontent.com/Source-Protocol-Cosmos/testnets/master/sourcechain-testnet/genesis.json > ~/.source/config/genesis.json
+curl -s  https://raw.githubusercontent.com/Source-Protocol-Cosmos/testnets/master/sourcechain-testnet/genesis.json > ~/.source/config/genesis.json
 ```
 
 **Genesis sha256**
@@ -126,7 +126,7 @@ sourced init <moniker-name> --chain-id=sourcechain-testnet
 2. Create a local key pair (skip this step if you already have a key):
 
 ```sh
-> sourced keys add <key-name>
+sourced keys add <key-name>
 ```
 
 3. Add your account to your local genesis file with a given amount and the key you just created. Use only `10000000000usource`, other amounts will be ignored.
