@@ -11,12 +11,12 @@
 
 #### Install Go
 
-**Prerequisites:** Make sure to have [Golang >=1.17](https://golang.org/).
+**Prerequisites:** Make sure to have [Golang >=1.18](https://golang.org/).
 ```bash
-wget https://golang.org/dl/go1.17.2.linux-amd64.tar.gz
+wget https://golang.org/dl/go1.18.2.linux-amd64.tar.gz
 ```
 ```bash
-sudo tar -xvf go1.17.2.linux-amd64.tar.gz -C /usr/local
+sudo tar -C /usr/local -xzf go1.18.2.linux-amd64.tar.gz
 ```
 ```bash
 sudo chown -R <YOUR_USERNAME>:<YOUR_USERNAME> /usr/local/go
