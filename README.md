@@ -4,6 +4,8 @@
 
 ### Source Testnet Set up
 
+For full Source Chain Documentation and testnet set up click: [HERE](https://docs.sourceprotocol.io/source-chain-documentation/introduction)
+
 ### Minimum hardware requirements
 4GB RAM
 250GB of disk space
@@ -29,8 +31,10 @@ nano ~/.profile
 ```
 
 ```
+export GOROOT=/usr/local/go
 export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin:/usr/local/go/bin
+export GO111MODULE=on
+export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin
 ```
 
 Source update .profile
