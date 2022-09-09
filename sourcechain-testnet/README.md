@@ -54,10 +54,14 @@ source .profile
 sudo curl https://get.ignite.com/cli! | sudo bash
 ```
 
-### Clone Source Chain Repo
-
 ```bash
-git clone -b testnet https://github.com/Source-Protocol-Cosmos/source.git
+git clone https://github.com/Source-Protocol-Cosmos/source.git
+```
+```bash
+cd source
+```
+```bash
+git checkout v1.0.0
 ```
 
 ### Compile sourced Binary
