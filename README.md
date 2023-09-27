@@ -4,91 +4,81 @@
 
 ### Source Testnet Set up
 
+**Source Testnet is now using "sourcetest-1" and v3.0.0 of the Source Blockchain. "Sourcechain-testnet" has been shutdown.**
+
+If you are reusing your testnet box, you must first remove the old data. Validators from the previous testnet will have usource available to start a new node, use your same wallet:
+
+```bash
+sudo systemctl stop sourced && \
+cd $HOME && \
+rm -rf .source && \
+rm -rf source && \
+rm -rf $(which sourced)
+```
+
+
 For full Source Chain Documentation and testnet set up click: [HERE](https://docs.sourceprotocol.io/source-chain-documentation/introduction)
 
 ### Minimum hardware requirements
-4GB RAM
+8GB RAM
 250GB of disk space
 1.4 GHz amd64 CPU
 
 #### Install Go
 
-**Prerequisites:** Make sure to have [Golang >=1.18](https://golang.org/).
+**Prerequisites:** Make sure to have [Golang >=1.19](https://golang.org/).
 ```bash
-wget https://golang.org/dl/go1.18.2.linux-amd64.tar.gz
-```
-```bash
-sudo tar -C /usr/local -xzf go1.18.2.linux-amd64.tar.gz
-```
-```bash
-sudo chown -R <YOUR_USERNAME>:<YOUR_USERNAME> /usr/local/go
-```
-
-You need to ensure your gopath configuration is correct. If the following **'make'** step does not work then you might have to add these lines to your .profile or .zshrc in the users home folder:
-
-```sh
-nano ~/.profile
-```
-
-```
-export GOROOT=/usr/local/go
-export GOPATH=$HOME/go
-export GO111MODULE=on
-export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin
-```
-
-Source update .profile
-
-```sh
-source .profile
-```
-
-
-### Install Ignite CLI/Starport
-
-[IGNITE CLI Install Docs](https://docs.ignite.com/guide/install.html)
-
-```bash
-sudo curl https://get.ignite.com/cli! | sudo bash
+ver="1.19" && \
+wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz" && \
+sudo rm -rf /usr/local/go && \
+sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz" && \
+rm "go$ver.linux-amd64.tar.gz" && \
+echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile && \
+source $HOME/.bash_profile && \
+go version
 ```
 
 ### Clone Source Chain Repo
 
 ```bash
-git clone -b testnet https://github.com/Source-Protocol-Cosmos/source.git
+git clone https://github.com/Source-Protocol-Cosmos/source.git
 ```
 
 ### Compile sourced Binary
 
 ```bash
 cd ~/source
-ignite chain build
+git fetch
+git checkout v3.0.0
+make build && make install
 ```
 
 
 ### Initialize the Source directories and create the local genesis file with the correct chain-id:
 
 ```bash
-sourced init <moniker-name> --chain-id=sourcechain-testnet
+sourced init <moniker-name> --chain-id=sourcetest-1
 ```
 
 ### Create a local key pair (or add existing key):
 
 ```sh
-sourced keys add <key-name>
+sourced keys add <walletName>
+    or
+sourced keys add <walletName> --recover
 ```
 
 ### Download Genesis File
 
 ```bash
-curl -s  https://raw.githubusercontent.com/Source-Protocol-Cosmos/testnets/master/sourcechain-testnet/genesis.json > ~/.source/config/genesis.json
+curl -s  https://raw.githubusercontent.com/Source-Protocol-Cosmos/testnets/master/sourcetest-1/genesis.json > ~/.source/config/genesis.json
 ```
 
 **Genesis sha256**
 
 ```bash
 sha256sum ~/.source/config/genesis.json
-# 2bf556b50a2094f252e0aac75c8018a9d6c0a77ba64ce39811945087f6a5165d
+# c8b8e28f1cc2c6bb708d963146842da9e367874267d90ab99a13a6bd736d5682
 ```
 
 ### Seed nodes to add to config.toml
@@ -100,7 +90,7 @@ nano ~/.source/config/config.toml
 
 ```
 # Comma separated list of nodes to keep persistent connections to persistent_peers = 
-"6ca675f9d949d5c9afc8849adf7b39bc7fccf74f@164.92.98.17:26656"
+"6ace839c852739d1ea6e3675d30380fe085c1c23a@52.26.226.21:26656,8145d4d13511e7f89dbd257f51ed5d076941f12f@164.92.98.12:26656"
 ```
 
 ### Set Minimum Gas Price
@@ -124,7 +114,7 @@ Below are the instructions to generate & submit your genesis transaction
 1. Initialize the Source directories and create the local genesis file with the correct chain-id:
 
 ```bash
-sourced init <moniker-name> --chain-id=sourcechain-testnet
+sourced init <moniker-name> --chain-id=sourcetest-1
 ```
 
 2. Create a local key pair (skip this step if you already have a key):
@@ -142,7 +132,7 @@ sourced add-genesis-account $(sourced keys show <key-name> -a) 10000000000usourc
 4. Create the gentx, use only `9000000000usource`:
 
 ```bash
-sourced gentx <key-name> 9000000000usource --chain-id=sourcechain-testnet
+sourced gentx <key-name> 9000000000usource --chain-id=sourcetest-1
 ```
 
 If all goes well, you will see a message similar to the following:
@@ -166,7 +156,7 @@ sourced tx staking create-validator \
 --details "validators write bios too" \
 --pubkey=$(sourced tendermint show-validator) \
 --moniker “<key-name>” \
---chain-id sourcechain-testnet \
+--chain-id sourcetest-1 \
 --gas-prices 0.025usource \
 --from <key-name>
 ```
