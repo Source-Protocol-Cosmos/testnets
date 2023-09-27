@@ -90,7 +90,7 @@ nano ~/.source/config/config.toml
 
 ```
 # Comma separated list of nodes to keep persistent connections to persistent_peers = 
-"6ace839c852739d1ea6e3675d30380fe085c1c23a@52.26.226.21:26656,8145d4d13511e7f89dbd257f51ed5d076941f12f@164.92.98.12:26656"
+"ace839c852739d1ea6e3675d30380fe085c1c23a@52.26.226.21:26656,8145d4d13511e7f89dbd257f51ed5d076941f12f@164.92.98.12:26656"
 ```
 
 ### Set Minimum Gas Price
