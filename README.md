@@ -49,7 +49,7 @@ git clone https://github.com/Source-Protocol-Cosmos/source.git
 ```bash
 cd ~/source
 git fetch
-git checkout v3.0.0
+git checkout v3.0.1
 make build && make install
 ```
 
